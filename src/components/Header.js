@@ -42,18 +42,20 @@ const Header = () => {
 
   return (
     <div
-      className={`w-full flex bg-gradient-to-b from-black  ${
-        !user ? "inset-0" : "h-1/6"
-      } fixed z-0 justify-between `}
+      className={`w-screen flex bg-gradient-to-b from-black  ${
+        !user ? "inset-0" : "h-1/3"
+      } fixed z-30 justify-between `}
+   
     >
-      <div className="w-44 my-3 mx-40">
+      <div className={`w-44 my-3 ${!user&&"mx-40"}`}>
         <img src={Logo} alt="Logo" />
       </div>
 
       {signBtn && !user && (
-        <div className="mx-40 my-5">
+        <div className={`${!user&&"mx-40"} my-5`}>
           <ul className="flex" onClick={() => setSignBtn(false)}>
-            <li className="text-white text-2xl items-center mx-10">Language</li>
+            <li className={`text-white text-2xl items-center ${!user&& "mx-10"
+          }`}>Language</li>
 
             <li>
               <Link to={"/login"}>
@@ -69,15 +71,15 @@ const Header = () => {
         </div>
       )}
       {user && (
-        <div className="mx-40 my-5">
+        <div className={`w-44 my-3  ${!user&&"mx-40"}`}>
           <ul className="flex">
-            <li className="text-white text-2xl items-center mx-10">
+            {/* <li className="text-white text-2xl items-center mx-10">
               {user?.displayName}
-            </li>
-            <li className="absolute">
+            </li> */}
+            <li className="mr-2">
               <img src={USER_AVATAR} alt="Loading" className="w-14"></img>
             </li>
-            <li>
+            <li className="mr-2">
               <Link to={"/"}>
                 <button
                   onClick={handleSignOut}

@@ -11,7 +11,7 @@ const Body = () => {
           src={BACKGROUND_IMG}
           alt="Image"
         />
-        <div className="absolute text-white text-center">
+        <div className="absolute text-white text-center z-40">
           <h1 className="text-7xl font-extrabold">
             Unlimited movies,
             <br />

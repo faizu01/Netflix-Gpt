@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {BACKGROUND_IMG} from "../utils/constant"
+import { BACKGROUND_IMG } from "../utils/constant";
 
 const Login = () => {
   const [isSignedIn, setIsSignedIn] = useState(true);
@@ -71,12 +71,8 @@ const Login = () => {
   };
   return (
     <div className="flex justify-center items-center">
-      <img
-        src={BACKGROUND_IMG}
-        alt="Image"
-        className=""
-      />
-      <div className="absolute  bg-black w-1/4 h-fit mb-20 bg-opacity-60  rounded-lg flex flex-col">
+      <img src={BACKGROUND_IMG} alt="Image" className="z-0 relative" />
+      <div className="absolute  bg-black w-1/4 h-fit mb-20 bg-opacity-60  rounded-lg flex flex-col z-40">
         <h1 className="text-white text-5xl m-2 p-3  ">
           {isSignedIn ? "Sign In" : "Sign Up"}
         </h1>
