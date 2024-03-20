@@ -1,12 +1,14 @@
 import React from "react";
 import Login from "./Login";
 import validate from "../utils/validate";
+import { BACKGROUND_IMG } from "../utils/constant";
+import { Link } from "react-router-dom";
 const Body = () => {
   return (
     <div className="w-full h-full flex flex-col ">
       <div className="flex justify-center items-center">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/9d3533b2-0e2b-40b2-95e0-ecd7979cc88b/a3873901-5b7c-46eb-b9fa-12fea5197bd3/IN-en-20240311-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+          src={BACKGROUND_IMG}
           alt="Image"
         />
         <div className="absolute text-white text-center">
@@ -22,15 +24,17 @@ const Body = () => {
             Ready to watch? Enter your email to create or restart your
             membership.
           </h3>
-          <input
+          {/* <input
             type="email"
             required
             placeholder="Email"
             className="m-3 px-10 py-2 rounded-md text-black text-lg font-bold"
-          ></input>
-          <button className="bg-red-700 px-20 m-3 py-3 rounded-lg text-lg font-bold">
-            Get Started{" "}
-          </button>
+          ></input> */}
+          <Link to={"/login"}>
+            <button className=" px-40 m-3 py-3 rounded-lg text-lg font-bold transition ease-in-out delay-150 bg-red-600 hover:-translate-y-1 hover:scale-110 hover:bg-red-500 duration-300 ">
+              Get Started{" "}
+            </button>
+          </Link>
         </div>
       </div>
 

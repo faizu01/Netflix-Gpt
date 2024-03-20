@@ -4,12 +4,11 @@ import { auth } from "../utils/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  sendEmailVerification,
   updateProfile,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addUser, removeUser } from "../utils/userSlice";
+import {BACKGROUND_IMG} from "../utils/constant"
 
 const Login = () => {
   const [isSignedIn, setIsSignedIn] = useState(true);
@@ -42,9 +41,6 @@ const Login = () => {
           })
             .then(() => {
               //Now dispath addUser remember !
-              const { uid, email, displayName, photoURL } = auth.currentUser;
-              dispatch(addUser({ uid, email, displayName, photoURL }));
-              navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -65,10 +61,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           // Signed in
-          const user = userCredential.user;
-          const { uid, email, displayName, photoURL } = auth.currentUser;
-          dispatch(addUser({ uid, email, displayName, photoURL }));
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -80,7 +72,7 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center">
       <img
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/9d3533b2-0e2b-40b2-95e0-ecd7979cc88b/a3873901-5b7c-46eb-b9fa-12fea5197bd3/IN-en-20240311-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+        src={BACKGROUND_IMG}
         alt="Image"
         className=""
       />

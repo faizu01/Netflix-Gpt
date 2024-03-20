@@ -1,22 +1,44 @@
 import React, { useEffect } from "react";
 import Logo from "../assets/Logo.png";
-import userIcon from "../assets/usericon.png";
+import USER_AVATAR from "../assets/USER_AVATAR.png";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { removeUser } from "../utils/userSlice";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { addUser, removeUser } from "../utils/userSlice";
 
 const Header = () => {
   const [signBtn, setSignBtn] = useState(true);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
   useEffect(() => {
-    if (user) {
-      setSignBtn(false);
-    } else {
-      setSignBtn(true);
-    }
-  }, [user]);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid, email, displayName }));
+        setSignBtn(false);
+        navigate("/browse");
+      } else {
+        // User is signed out
+        // ...
+        dispatch(removeUser());
+        setSignBtn(true);
+        navigate("/");
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div
@@ -48,16 +70,17 @@ const Header = () => {
       )}
       {user && (
         <div className="mx-40 my-5">
-          <ul className="flex" onClick={() => setSignBtn(false)}>
+          <ul className="flex">
             <li className="text-white text-2xl items-center mx-10">
               {user?.displayName}
             </li>
-            <img src={userIcon} alt="Loading" className="w-14"></img>
-            <li></li>
+            <li className="absolute">
+              <img src={USER_AVATAR} alt="Loading" className="w-14"></img>
+            </li>
             <li>
               <Link to={"/"}>
                 <button
-                  onClick={()=>dispatch(removeUser())}
+                  onClick={handleSignOut}
                   className="px-4 py-2 rounded-md text-white bg-red-700 text-md"
                   type="submit"
                 >
