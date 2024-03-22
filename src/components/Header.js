@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Logo from "../assets/Logo.png";
 import USER_AVATAR from "../assets/USER_AVATAR.png";
 import { useState } from "react";
@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { addUser, removeUser } from "../utils/userSlice";
-
+import { addToggleGptSearch } from "../utils/gptSlice";
+import { SUPPORTED_LANGUAGES } from "../utils/constant";
+import { changeLanguage } from "../utils/configSlice";
 const Header = () => {
   const [signBtn, setSignBtn] = useState(true);
   const dispatch = useDispatch();
@@ -40,6 +42,12 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  const handleGptSearchClick = () => {
+    dispatch(addToggleGptSearch());
+  };
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
   return (
     <div
       className={`w-screen flex bg-gradient-to-b from-black ${
@@ -73,15 +81,31 @@ const Header = () => {
         </div>
       )}
       {user && (
-        <div className={`w-44 my-3  ${!user && "mx-40"}`}>
+        <div className={`my-3  ${!user && "mx-40"}`}>
+          {/* MultiLingual support */}
           <ul className="flex">
-            {/* <li className="text-white text-2xl items-center mx-10">
-              {user?.displayName}
-            </li> */}
-            <li className="mr-2">
+            <select className="mr-2" onChange={handleLanguageChange}>
+              <option default disabled>
+                Language
+              </option>
+              {SUPPORTED_LANGUAGES.map((language) => (
+                <option key={language.identifier} value={language.identifier}>
+                  {language.name}
+                </option>
+              ))}
+            </select>
+            <li className="mr-4">
+              <button
+                className="bg-purple-400 p-4"
+                onClick={handleGptSearchClick}
+              >
+                GPT Search
+              </button>
+            </li>
+            <li className="mr-4">
               <img src={USER_AVATAR} alt="Loading" className="w-14"></img>
             </li>
-            <li className="mr-2">
+            <li className="mr-4">
               <Link to={"/"}>
                 <button
                   onClick={handleSignOut}
