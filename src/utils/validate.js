@@ -8,7 +8,7 @@ const validate = (email, password) => {
     );
 
   if (!isEmailValid) return "Email is not valid";
-  if (!isPasswordValid) return "Password is not valid";
+  if (!isPasswordValid) return "Password should contain at least one Capital Letter and special character e.g (@ # * $)";
   else return null;
 };
 

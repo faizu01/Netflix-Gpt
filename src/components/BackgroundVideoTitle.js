@@ -1,7 +1,7 @@
 const BackgroundVideoTitle = ({ title, overview }) => {
   return (
     // <div className="absolute mx-20 w-1/3 text-white z-10 my-80 bg-gradient-to-b from-black ">
-    <div className="absolute z-20  w-screen aspect-video pt-80 px-16 text-white  bg-gradient-to-r from-black  ">
+    <div className="absolute w-screen aspect-video  pt-80 px-16 text-white  bg-gradient-to-r from-black  ">
       {/* <div className="absolute w-screen aspect-video "> */}
       <div className="w-1/3">
         <h1 className="text-5xl font-bold">{title}</h1>

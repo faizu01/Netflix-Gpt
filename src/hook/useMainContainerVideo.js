@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { NOW_PLAYING_OPTIONS } from "../utils/constant";
+import { MOVIE_OPTIONS } from "../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { addTrailerVideo } from "../utils/moviesSlice";
 const useMainContainerVideo = (movieId) => {
@@ -11,7 +11,7 @@ const useMainContainerVideo = (movieId) => {
   const fetchMainContainerVideo = async () => {
     const Data = await fetch(
       `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
-      NOW_PLAYING_OPTIONS
+      MOVIE_OPTIONS
     );
 
     const json = await Data?.json();
