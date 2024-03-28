@@ -5,12 +5,11 @@ export const MOVIE_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZTE5ZjQyODJiODJkNzg4NDhiMzY1Y2U1N2E2ZTQ1NiIsInN1YiI6IjY1ZmE3NzU5M2ZlMTYwMDE3ZGYzMzkxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TeiGmM6F_jlaHnLrUoxvxnXu69rxtI5Rr0SFpi6hbNs",
+    Authorization: "Bearer " + process.env.REACT_APP_TMDB_API_KEY,
   },
 };
 
-export const IMG_CDN = "https://image.tmdb.org/t/p/w342";
+export const IMG_CDN = "https://image.tmdb.org/t/p/w185";
 
 export const SUPPORTED_LANGUAGES = [
   { identifier: "en", name: "English" },

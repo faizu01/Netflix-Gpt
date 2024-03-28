@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { MOVIE_OPTIONS } from "../utils/constant";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPopularPlayingMovies } from "../utils/moviesSlice";
 
 const usePopularPlayinMovies = () => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
+  const popularPlayingMovies = useSelector(
+    (store) => store.movies.popularPlayingMovies
+  );
   useEffect(() => {
-    fetchPopularMovies();
+    !popularPlayingMovies && fetchPopularMovies();
   }, []);
 
   const fetchPopularMovies = async () => {

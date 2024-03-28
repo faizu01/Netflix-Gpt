@@ -3,9 +3,10 @@ import { MOVIE_OPTIONS } from "../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { addTrailerVideo } from "../utils/moviesSlice";
 const useMainContainerVideo = (movieId) => {
+  const maincontainerVideo=useSelector((store)=>store.movies.maincontainerVideo);
   const dispatch = useDispatch();
   useEffect(() => {
-    fetchMainContainerVideo();
+    !maincontainerVideo && fetchMainContainerVideo();
   }, []);
 
   const fetchMainContainerVideo = async () => {

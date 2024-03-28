@@ -9,7 +9,7 @@ const BackgroundVideo = ({ movieId }) => {
   if (!trailerVideo) return;
 
   return (
-    <div className="w-screen">
+    <div className="w-[100%] xs:hidden overflow-hidden">
       <iframe
         className="w-screen aspect-video"
         width="100%"

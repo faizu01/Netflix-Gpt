@@ -8,10 +8,10 @@ import { useSelector } from "react-redux";
 const MainContainer = () => {
   const movies = useSelector((store) => store.movies.nowPlayingMovies);
   if (!movies) return <h1>Loading .....</h1>; //early return
- 
-  const mainMovie = movies[12];    
+  //console.log(movies);
+  const mainMovie = movies[7];
   const { id, original_title, overview } = mainMovie; //destructure
-  
+
   return (
     <div className="flex">
       <BackgroundVideo movieId={id} />

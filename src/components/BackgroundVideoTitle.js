@@ -1,27 +1,29 @@
 const BackgroundVideoTitle = ({ title, overview }) => {
   return (
-    // <div className="absolute mx-20 w-1/3 text-white z-10 my-80 bg-gradient-to-b from-black ">
-    <div className="absolute w-screen aspect-video  pt-80 px-16 text-white  bg-gradient-to-r from-black  ">
-      {/* <div className="absolute w-screen aspect-video "> */}
-      <div className="w-1/3">
-        <h1 className="text-5xl font-bold">{title}</h1>
-        <h3 className="mt-4 ">{overview}</h3>
-        <div className="mt-6">
+    <div className="absolute w-screen aspect-video md:pt-[13%] pt-[20%] px-16 text-white bg-gradient-to-r from-black overflow-hidden">
+      <div className="xs:w-screen  xs:absolute md:w-10/12 lg:w-1/2 xl:w-1/3 2xl:w-1/3 ">
+        {/* <div className="mt[-22%] lg:mt-0"> */}
+
+        <h1 className="font-bold hidden sm:block text-4xl">{title}</h1>
+        <h3 className="mt-0 hidden xl:block lg:mt-4 text-sm">{overview}</h3>
+        <div className="mt-6 hidden sm:block">
           <button
             type="button"
-            className="bg-white text-black font text-xl font-bold px-10 py-5  rounded-lg hover:bg-opacity-70  hover:-translate-y-1 hover:scale-110 duration-300"
+            className="bg-white md:px-[7%] px-[5%] text-black font text-sm md:text-lg font-bold  py-5 rounded-lg hover:bg-opacity-70 hover:-translate-y-1 hover:scale-110 duration-300 xs:mx-[5%] xs:mb-2"
           >
             ▶ Play
           </button>
           <button
             type="button"
-            className="bg-gray-50 bg-opacity-50 text-white font text-xl font-bold px-10 py-5 mx-6 rounded-lg hover:bg-opacity-70 hover:-translate-y-1 hover:scale-110 duration-300"
+            className="bg-gray-50 md:px-[7%] px-[5%] bg-opacity-50 text-white font text-sm md:text-lg font-bold  py-5 mx-6 rounded-lg hover:bg-opacity-70 hover:-translate-y-1 hover:scale-110 duration-300 xs:mx-[5%] xs:mb-2"
           >
             More Info
           </button>
         </div>
+        {/* </div> */}
       </div>
     </div>
   );
 };
+
 export default BackgroundVideoTitle;

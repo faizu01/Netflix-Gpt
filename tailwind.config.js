@@ -1,13 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from "tailwindcss/defaultTheme";
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    screens: {
+      xs: { max: "616px" },
+      ...defaultTheme.screens,
+    },
   },
-  plugins: [
-    require('tailwind-scrollbar-hide'),
-  ],
-}
+  plugins: [require("tailwind-scrollbar-hide")],
+};

@@ -1,3 +1,4 @@
+// "strict mode"
 import React, { useRef, useState } from "react";
 import validate from "../utils/validate";
 import { auth } from "../utils/firebase";
@@ -71,9 +72,13 @@ const Login = () => {
   };
   return (
     <div className="flex justify-center items-center">
-      <img src={BACKGROUND_IMG} alt="Image" className="z-0 relative" />
-      <div className="absolute  bg-black w-1/4 h-fit mb-20 bg-opacity-60  rounded-lg flex flex-col z-40">
-        <h1 className="text-white text-5xl m-2 p-3  ">
+      <img
+        src={BACKGROUND_IMG}
+        alt="Image"
+        className="h-screen w-screen object-cover z-0 relative"
+      />
+      <div className="fixed z-40 bg-black bg-opacity-60 rounded-lg flex flex-col xs:w-screen xs:top-[20%] sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-[20%] ">
+        <h1 className="text-white text-4xl m-2 p-3 xs:text-3xl md:text-5xl">
           {isSignedIn ? "Sign In" : "Sign Up"}
         </h1>
         <form onSubmit={(e) => e.preventDefault()}>
@@ -89,7 +94,7 @@ const Login = () => {
             ref={email}
             type="text"
             placeholder="Email or Phone Number"
-            className="m-4 p-4 rounded-xl w-11/12  text-white bg-blue-400 bg-opacity-20 "
+            className="m-4 p-4  rounded-xl w-11/12  text-white bg-blue-400 bg-opacity-20 "
           ></input>
           <input
             ref={password}
@@ -111,18 +116,18 @@ const Login = () => {
           </p>
 
           <p
-            className="text-white m-4 p-4 cursor-pointer"
+            className="text-white m-4 p-4 cursor-pointer text-sm md:text-2xl"
             onClick={() => {
               isSignedIn ? setIsSignedIn(false) : setIsSignedIn(true);
             }}
           >
-            <b>
+            <b className="text-sm md:text-sm lg:text-2xl">
               {isSignedIn
                 ? "New to Netflix ?  Sign Up Now "
                 : "Already Registered ? Sign In Now"}
             </b>
           </p>
-          <p className="text-white text-sm m-2 p-4">
+          <p className="text-white text-sm -mt-9 mx-8 py-10">
             This page is protected by Google reCAPTCHA to ensure you're not a
             bot.
           </p>

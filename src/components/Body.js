@@ -5,33 +5,30 @@ import { BACKGROUND_IMG } from "../utils/constant";
 import { Link } from "react-router-dom";
 const Body = () => {
   return (
-    <div className="w-full h-full flex flex-col ">
-      <div className="flex justify-center items-center">
+    <div className="w-screen h-screen flex flex-col">
+      <div className="flex justify-center items-center h-screen">
         <img
+          className="h-[100%]  w-[100%] md:fixed object-cover"
           src={BACKGROUND_IMG}
           alt="Image"
         />
-        <div className="absolute text-white text-center z-40">
-          <h1 className="text-7xl font-extrabold">
+        <div className="absolute text-white text-center z-40 ">
+          <h1 className="text-4xl xs:text-3xl md:text-7xl font-extrabold">
             Unlimited movies,
             <br />
-            TV shows and more
+            <h1>TV shows and more</h1>
           </h1>
-          <h3 className=" p-3 m-3 font-bold text-xl">
+
+          <h3 className="md:p-3 m-3 font-bold text-xl">
             Starts at ₹149. Cancel anytime.
           </h3>
-          <h3 className="m-3 text-lg font-bold">
+          <h3 className=" xs:hidden md:m-3 text-lg font-bold">
             Ready to watch? Enter your email to create or restart your
             membership.
           </h3>
-          {/* <input
-            type="email"
-            required
-            placeholder="Email"
-            className="m-3 px-10 py-2 rounded-md text-black text-lg font-bold"
-          ></input> */}
+
           <Link to={"/login"}>
-            <button className=" px-40 m-3 py-3 rounded-lg text-lg font-bold transition ease-in-out delay-150 bg-red-600 hover:-translate-y-1 hover:scale-110 hover:bg-red-500 duration-300 ">
+            <button className="px-[10%] py-3 my-3 md:m-3 rounded-lg text-lg font-bold transition ease-in-out delay-150 bg-red-600 hover:-translate-y-1 hover:scale-110 hover:bg-red-500 duration-300 ">
               Get Started{" "}
             </button>
           </Link>

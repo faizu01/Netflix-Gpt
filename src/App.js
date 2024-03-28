@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { fireEvent } from "@testing-library/react";
 import { addUser, removeUser } from "./utils/userSlice";
+import MovieDetails from "./components/MovieDetail/MovieDetails";
 
 const AppLayout = () => {
   return (
@@ -44,6 +45,10 @@ const appRouter = createBrowserRouter([
         path: "/browse",
         element: <Browse />,
       },
+      {
+        path:"/moviedetails/:movieID",
+        element:<MovieDetails />
+      }
     ],
   },
 ]);
