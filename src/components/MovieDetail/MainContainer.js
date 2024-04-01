@@ -5,7 +5,7 @@ import MovieDescription from "./MovieDescription";
 const MainContainer = ({ movieDetails }) => {
  
   if (!movieDetails) return;
-  console.log(movieDetails);
+  //console.log(movieDetails);
   return (
     <div className="md:flex">
       <MoviePoster backdrop_path={movieDetails?.backdrop_path} />

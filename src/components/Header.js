@@ -49,10 +49,15 @@ const Header = () => {
 
   const handleGptSearchClick = () => {
     dispatch(addToggleGptSearch());
+    if (toggleGptSearch) {
+      navigate("/browse");
+    } else {
+      navigate("/gpt-search");
+    }
   };
   const handleLanguageChange = (e) => {
     dispatch(changeLanguage(e.target.value));
-    //console.log(e.target.value);
+   
   };
   //useEffect=(()=>{
 
@@ -68,7 +73,7 @@ const Header = () => {
         toggleHamBurger ? "bg-black" : "bg-transparent"
       } bg-opacity-70 md:bg-transparent ${
         !user ? "inset-0" : "h-1/3"
-      } absolute z-30 justify-between `}
+      } fixed z-30 justify-between `}
     >
       <div className="flex justify-between">
         <div className={`mx-0 my-3  w-40 md:w-56 md:${"mx-[10%] "}`}>

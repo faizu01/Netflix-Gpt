@@ -1,4 +1,5 @@
 export const VideoCard = ({ video }) => {
+  // console.log(video);
   return (
     <div className="text-white px-2">
       <iframe
@@ -9,7 +10,7 @@ export const VideoCard = ({ video }) => {
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
+        allowFullScreen
       ></iframe>
     </div>
   );

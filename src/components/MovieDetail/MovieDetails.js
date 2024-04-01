@@ -5,14 +5,14 @@ import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 const MovieDetails = () => {
   const movieID = useParams();
+  useMovieDetails(movieID);
   const movieDetails = useSelector((store) => store.movies.movieDetails);
-  useMovieDetails(movieID)
- 
+  // console.log(movieID);
 
   return (
     <div className="">
       <MainContainer movieDetails={movieDetails} />
-      <SecondaryContainer movieID={movieID}/>
+      <SecondaryContainer movieID={movieID} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 
 const MoviePoster = ({ backdrop_path }) => {
-  console.log(backdrop_path);
+  // console.log(backdrop_path);
   return (
     <div className="w-screen h-screen">
       <img

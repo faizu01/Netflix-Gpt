@@ -18,6 +18,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { fireEvent } from "@testing-library/react";
 import { addUser, removeUser } from "./utils/userSlice";
 import MovieDetails from "./components/MovieDetail/MovieDetails";
+import GptSearch from "./components/GptSearch";
 
 const AppLayout = () => {
   return (
@@ -46,8 +47,12 @@ const appRouter = createBrowserRouter([
         element: <Browse />,
       },
       {
-        path:"/moviedetails/:movieID",
-        element:<MovieDetails />
+        path: "/moviedetails/:movieID",
+        element: <MovieDetails />,
+      },
+      {
+        path:"/gpt-search",
+        element:<GptSearch />
       }
     ],
   },

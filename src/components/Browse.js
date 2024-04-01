@@ -14,14 +14,8 @@ const Browse = () => {
   //console.log(movielist);
   return (
     <div className="flex flex-col w-screen overflow-hidden">
-      {showGpt ? (
-        <GptSearch />
-      ) : (
-        <>
-          <MainContainer />
-          <SecondaryContainer />
-        </>
-      )}
+      <MainContainer />
+      <SecondaryContainer />
     </div>
   );
 };

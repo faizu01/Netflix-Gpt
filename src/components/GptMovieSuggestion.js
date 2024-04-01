@@ -12,21 +12,21 @@ const GptMovieSuggestion = () => {
   //console.log(movieNamesResults);
 
   return (
-    <>
-      <h1 className="relative text-4xl lg:text-6xl text-center mt-4  pb-20 text-white bg-gradient-to-t from-black w-screen bg-opacity-80">
+    <div className="bg-black relative bg-opacity-95">
+      <h1 className="text-2xl md:text-6xl text-center    text-white   w-screen ">
         {showMovies.searchQuery && (
-          <b>Search Results for: {showMovies.searchQuery} </b>
+          <span><b>Search Results for: </b>{showMovies.searchQuery}</span>
         )}
       </h1>
 
-      <div className="relative bg-black bg-opacity-50 ">
+      <div className="">
         <div>
           {movieNames?.map((movieName, index) => (
             <MovieList title={movieName} movieData={movieNamesResults[index]} />
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -3,6 +3,7 @@ import { IMG_CDN } from "../utils/constant";
 import MovieDetails from "./MovieDetail/MovieDetails";
 import { Link } from "react-router-dom";
 const MovieCard = ({ posterPath, id }) => {
+  // console.log(posterPath);
   const [showdetail, setShowDetails] = useState(false);
   if (!posterPath && !id) return;
 
