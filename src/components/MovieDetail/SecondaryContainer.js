@@ -12,7 +12,7 @@ const SecondaryContainer = () => {
 
   if (!movies) return;
   return (
-    <div className="bg-black px-[7%] ">
+    <div className="bg-black px-[7%] w-screen ">
       <div className="py-[3%]">
         <MovieList title={"Videos"} movieData={movies?.movieVideos} />
       </div>

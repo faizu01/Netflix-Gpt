@@ -7,7 +7,7 @@ import { addRecommendedMovies, setSearchQuery } from "../utils/gptSlice";
 const GptSearchBar = () => {
   const dispatch = useDispatch();
   const LangIdentifier = useSelector((store) => store.config.lang);
-  const searchQuery=useSelector((store)=>store.gpt.searchQuery);
+  const searchQuery = useSelector((store) => store.gpt.searchQuery);
   const searchPrompt = useRef(null);
   const fetchRecommendedMovies = async (movieName) => {
     const correctMovieName = movieName.replace(" ", "%20");
@@ -60,7 +60,11 @@ const GptSearchBar = () => {
     );
   };
   return (
-    <div className={`2xl:pt-[10%] md:pt-[20%] pt-[45%] md:flex md:justify-center ${searchQuery && "bg-gradient-to-t from-black"} relative z-10`}>
+    <div
+      className={`2xl:pt-[10%] md:pt-[20%] pt-[45%] md:flex md:justify-center ${
+        searchQuery && "bg-gradient-to-t from-black"
+      } relative z-10`}
+    >
       <form
         className="md:p-10 p-0 w-screen  xl:w-1/2 flex md:flex-row flex-col items-center xs:pt-[20%] "
         onSubmit={(e) => e.preventDefault()}

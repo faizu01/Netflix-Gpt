@@ -7,7 +7,7 @@ const MainContainer = ({ movieDetails }) => {
   if (!movieDetails) return;
   //console.log(movieDetails);
   return (
-    <div className="md:flex">
+    <div className="md:flex flex-col">
       <MoviePoster backdrop_path={movieDetails?.backdrop_path} />
       <MovieDescription movieDetails={movieDetails} />
     </div>

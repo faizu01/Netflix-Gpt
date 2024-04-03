@@ -2,9 +2,11 @@ import React from "react";
 
 const MovieDescription = ({ movieDetails }) => {
   return (
-    <div className="h-screen absolute  flex items-center px-[10%]  bg-gradient-to-r from-black text-white">
-      <div className="w-[30%] px-1">
-        <h1 className="text-5xl pb-4 font-extrabold">{movieDetails?.title}</h1>
+    <div className="lg:h-screen w-screen h-auto lg:absolute  flex md:items-center px-[10%]  md:bg-gradient-to-r from-black  text-white bg-black lg:bg-transparent ">
+      <div className="w-auto lg:w-[50%] 2xl:w-[37%] px-1">
+        <h1 className="text-5xl  pb-[6%] font-extrabold">
+          {movieDetails?.title}
+        </h1>
 
         <ul className="flex text-lg justify-between">
           <li className="px-1">
@@ -29,7 +31,9 @@ const MovieDescription = ({ movieDetails }) => {
           </li>
         </ul>
 
-        <h3 className="mt-0 lg:mt-4 px-2 text-lg">{movieDetails?.overview}</h3>
+        <h3 className="mt-[5%] lg:mt-4 px-2 text-lg">
+          {movieDetails?.overview}
+        </h3>
       </div>
     </div>
   );

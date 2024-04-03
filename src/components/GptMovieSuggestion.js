@@ -15,7 +15,10 @@ const GptMovieSuggestion = () => {
     <div className="bg-black relative bg-opacity-95">
       <h1 className="text-2xl md:text-6xl text-center    text-white   w-screen ">
         {showMovies.searchQuery && (
-          <span><b>Search Results for: </b>{showMovies.searchQuery}</span>
+          <span>
+            <b>Search Results for: </b>
+            {showMovies.searchQuery}
+          </span>
         )}
       </h1>
 

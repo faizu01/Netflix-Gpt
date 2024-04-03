@@ -14,8 +14,8 @@ const BackgroundVideo = ({ movieId }) => {
         className="w-screen aspect-video"
         width="100%"
         height="100%"
-        src={`https://www.youtube.com/embed/${trailerVideo?.[0]?.key}?autoplay=1&mute=1&controls=0`}
-        // src={`https://www.youtube.com/embed/hXzcyx9V0xw?autoplay=1&mute=1&controls=0`}
+        src={`https://www.youtube.com/embed/${trailerVideo?.[0]?.key}?autoplay=1&mute=1&controls=0&loop=1`}
+        // src={`https://www.youtube.com/embed/M0dAK6IQsSk?autoplay=1&mute=1&controls=0&loop=1`}
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
