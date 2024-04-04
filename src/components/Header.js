@@ -8,7 +8,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { addUser, removeUser } from "../utils/userSlice";
 import { addToggleGptSearch } from "../utils/gptSlice";
-import { SUPPORTED_LANGUAGES } from "../utils/constant";
+import { AVATAR, SUPPORTED_LANGUAGES } from "../utils/constant";
 import { changeLanguage } from "../utils/configSlice";
 import { setToggleHamBurger, setToggleSign } from "../utils/hamBurgerSlice";
 const Header = () => {
@@ -18,15 +18,15 @@ const Header = () => {
   const user = useSelector((store) => store.user);
   const toggleGptSearch = useSelector((store) => store.gpt.toggleGptSearch);
   const displayName = useSelector((store) => store?.user?.displayName);
-  const toggleSign = useSelector((store) => store.hamburger.toggleSign);
+  const [toggleuser,setToggleUser]=useState(false);
   const toggleHamBurger = useSelector(
     (store) => store.hamburger.toggleHamBurger
   );
   const handleSignOut = () => {
     signOut(auth)
-    .then(() => {
+      .then(() => {
         // dispatch(setToggleSign());
-        dispatch(setToggleHamBurger())
+        dispatch(setToggleHamBurger());
         // Sign-out successful.
       })
       .catch((error) => {
@@ -67,7 +67,8 @@ const Header = () => {
     dispatch(setToggleHamBurger());
   };
   const handleUser = () => {
-    dispatch(setToggleSign());
+    // dispatch(setToggleSign());
+    setToggleUser(!toggleuser)
   };
   return (
     <div
@@ -133,10 +134,7 @@ const Header = () => {
             </>
           )}
           {user && (
-            <li
-              className="mr-4 md:py-0 pb-5 px-[2%] md:px-[0%] mt-1 md:hidden"
-              
-            >
+            <li className="mr-4 md:py-0 pb-5 px-[2%] md:px-[0%] mt-1 md:hidden">
               <button
                 className="text-xl hover:text-cyan-400 duration-500  md:hover:text-white   md:bg-purple-400  md:py-1  md:px-2"
                 onClick={handleSignOut}
@@ -147,17 +145,17 @@ const Header = () => {
           )}
 
           {user ? (
-            <div className="cursor-pointer" onClick={handleUser}>
+            <div className="cursor-pointer" onMouseEnter={handleUser}>
               <div className="md:flex hidden">
                 <li className="md:mr-1">
                   <img
-                    src={USER_AVATAR}
+                    src={AVATAR}
                     alt="Loading"
                     className="w-12 rounded-xl "
                   ></img>
                 </li>
                 <li className="mx-2 my-3 md:py-0 pb-5 pl-1 md:pl-0 text-sm">
-                  {toggleSign ? "▲" : "▼"}
+                  {toggleuser ? "▲" : "▼"}
                 </li>
               </div>
               {/*------------------------------------------ bug h small screen me signout ni arra fix it  ------------------------------------------*/}
@@ -175,39 +173,41 @@ const Header = () => {
         </ul>
         {user && (
           <div
-            className={`md:my-[3%] mx-4 w-[276px] h-[276px] float-end bg-black bg-opacity-50 text-white rounded-lg ${
-              toggleSign ? "visible" : "hidden"
+            onMouseLeave={handleUser}
+            className={`md:my-[3%] mx-4 w-[200px] h-[150px] float-end bg-black text-white rounded-lg ${
+              toggleuser ? "visible" : "hidden"
             } `}
           >
-            <div className="flex flex-col justify-center items-center">
-              {/* <div className="flex justify-between"> */}
-
-              <h6 className="text-lg">{user?.email}</h6>
+            <div className="px-2 font-bold">
+              <ul className="text-lg cursor-pointer">
+                <li className="py-1 hover:underline">Manage profiles</li>
+                <li className="py-1 hover:underline">Account</li>
+                <li className="py-1 hover:underline">Help center</li>
+                <li className="py-1 flex justify-center border border- white">
+                  <Link to="/">
+                    <button
+                      onClick={handleSignOut}
+                      className="md:px-2  md:py-1  hover:underline duration-500 rounded-md text-white text-sm  "
+                      type="submit"
+                    >
+                      Sign Out of Netflix
+                    </button>
+                  </Link>
+                </li>
+              </ul>
+              {/* <h6 className="text-sm">{user?.email}</h6> */}
 
               {/* </div> */}
-              <img
-                src="https://cdn-icons-png.flaticon.com/128/3899/3899618.png"
-                className="w-[80px] h-[80px]"
-              ></img>
-              {"Hi, " + displayName}
-              {/* <div className="bg-white w-11/12 my-5 flex justify-center py-2 rounded-xl "> */}
 
-              <Link to="/">
-                <button
-                  onClick={handleSignOut}
-                  className="md:px-2  md:py-1 text-xl hover:text-cyan-300 duration-500 rounded-md text-white text-md md:bg-red-700 my-5"
-                  type="submit"
-                >
-                  Sign Out
-                </button>
-              </Link>
+              {/* {"Hi, " + displayName} */}
+              {/* <div className="bg-white w-11/12 my-5 flex justify-center py-2 rounded-xl "> */}
             </div>
           </div>
         )}
         {user && (
           <div
             className={`lg:mt-3 opacity-0 text-lg lg:opacity-100 lg:float-end lg:mr-[5%] ${
-              !toggleSign ? "block" : "hidden"
+              !toggleuser ? "block" : "hidden"
             }`}
           >
             {"Hello 👋 " + displayName.split(" ")[0]}

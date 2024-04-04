@@ -8,7 +8,7 @@ const Body = () => {
     <div className="w-screen h-screen flex flex-col">
       <div className="flex justify-center items-center h-screen">
         <img
-          className="h-[100%]  w-[100%] md:fixed object-cover"
+          className="h-[100%]  w-[100%]  object-cover"
           src={BACKGROUND_IMG}
           alt="Image"
         />
@@ -35,7 +35,7 @@ const Body = () => {
         </div>
       </div>
 
-      <div className="text-center">zyz</div>
+      
     </div>
   );
 };

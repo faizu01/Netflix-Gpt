@@ -19,12 +19,13 @@ import { fireEvent } from "@testing-library/react";
 import { addUser, removeUser } from "./utils/userSlice";
 import MovieDetails from "./components/MovieDetail/MovieDetails";
 import GptSearch from "./components/GptSearch";
-
+import Footer from "./components/Footer";
 const AppLayout = () => {
   return (
     <div>
       <Header />
       <Outlet />
+      <Footer />
     </div>
   );
 };
@@ -51,9 +52,9 @@ const appRouter = createBrowserRouter([
         element: <MovieDetails />,
       },
       {
-        path:"/gpt-search",
-        element:<GptSearch />
-      }
+        path: "/gpt-search",
+        element: <GptSearch />,
+      },
     ],
   },
 ]);
