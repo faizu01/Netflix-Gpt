@@ -22,7 +22,7 @@ const MovieCard = ({ posterPath, id }) => {
       <Link to={"/moviedetails/" + id}>
         <img className="" src={IMG_CDN + posterPath}></img>
         {showdetail && (
-          <h1 className="absolute inset-0 flex  items-center  justify-center bg-black bg-opacity-70 text-white text-xl">
+          <h1 className="absolute inset-0 flex  items-center  justify-center bg-black bg-opacity-70f text-white text-xl">
             Show Details
           </h1>
         )}

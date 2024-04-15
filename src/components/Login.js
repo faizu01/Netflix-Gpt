@@ -2,14 +2,18 @@
 import React, { useRef, useState } from "react";
 import validate from "../utils/validate";
 import { auth } from "../utils/firebase";
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  sendEmailVerification,
+  updateCurrentUser,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { BACKGROUND_IMG } from "../utils/constant";
+// import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignedIn, setIsSignedIn] = useState(true);
@@ -18,56 +22,39 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
   const [errormessage, setErrorMessage] = useState(null);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const handleOnSubmit = () => {
+  const handleOnSubmit = async () => {
     const errormessage = validate(email.current.value, password.current.value);
     setErrorMessage(errormessage);
     if (errormessage) return;
 
     if (!isSignedIn) {
-      //signup page
-      createUserWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
         auth,
         email.current.value,
         password.current.value
-      )
-        .then((userCredential) => {
-          // Signed up
-          const user = userCredential.user;
-          //if user email and password is created now beta update user with name and photo
-          updateProfile(auth.currentUser, {
-            displayName: name.current.value,
-            photoURL: "https://in.pinterest.com/pin/633600241315271392/",
-          })
-            .then(() => {
-              //Now dispath addUser remember !
-            })
-            .catch((error) => {
-              // An error occurred
-              // ...
-            });
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // setErrorMessage(errorerrorMessage);
-        });
+      ).then(async (userCredential) => {
+        const user = userCredential.user;
+        await updateProfile(user, {
+          displayName: name.current.value,
+          photoURL: "https://example.com/jane-q-user/profile.jpg",
+        }); 
+        window.location.reload();
+        await sendEmailVerification(user);
+        alert("An email with verification has been sent !");
+      });
     } else {
       //Sign In
-      signInWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value
-      )
-        .then((userCredential) => {
-          // Signed in
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMessage("Incorrect Email or Password ");
-        });
+      try {
+        await signInWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        ).then((userCredential) => {});
+      } catch (error) {
+        setErrorMessage("Incorrect Email or Password ");
+      }
     }
   };
   return (

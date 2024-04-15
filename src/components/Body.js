@@ -34,8 +34,6 @@ const Body = () => {
           </Link>
         </div>
       </div>
-
-      
     </div>
   );
 };

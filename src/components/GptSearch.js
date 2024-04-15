@@ -4,7 +4,7 @@ import GptMovieSuggestion from "./GptMovieSuggestion";
 import { BACKGROUND_IMG } from "../utils/constant";
 const GptSearch = () => {
   return (
-    <div className="h-auto w-screen">
+    <div className="h-full w-screen">
       <img
         src={BACKGROUND_IMG}
         alt="Image"

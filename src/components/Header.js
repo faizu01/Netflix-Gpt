@@ -10,7 +10,7 @@ import { addUser, removeUser } from "../utils/userSlice";
 import { addToggleGptSearch } from "../utils/gptSlice";
 import { AVATAR, SUPPORTED_LANGUAGES } from "../utils/constant";
 import { changeLanguage } from "../utils/configSlice";
-import { setToggleHamBurger, setToggleSign } from "../utils/hamBurgerSlice";
+import { setToggleHamBurger, setToggleSign, setToggleUser } from "../utils/hamBurgerSlice";
 const Header = () => {
   const [signBtn, setSignBtn] = useState(true);
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const Header = () => {
   const user = useSelector((store) => store.user);
   const toggleGptSearch = useSelector((store) => store.gpt.toggleGptSearch);
   const displayName = useSelector((store) => store?.user?.displayName);
-  const [toggleuser,setToggleUser]=useState(false);
+  const toggleuser=useSelector((store)=>store.hamburger.toggleuser);
   const toggleHamBurger = useSelector(
     (store) => store.hamburger.toggleHamBurger
   );
@@ -27,6 +27,7 @@ const Header = () => {
       .then(() => {
         // dispatch(setToggleSign());
         dispatch(setToggleHamBurger());
+        dispatch(setToggleUser());
         // Sign-out successful.
       })
       .catch((error) => {
@@ -36,8 +37,8 @@ const Header = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const { uid, email, displayName } = user;
-        dispatch(addUser({ uid, email, displayName }));
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(addUser({ uid, email, displayName, photoURL }));
         setSignBtn(false);
         navigate("/browse");
       } else {
@@ -67,15 +68,14 @@ const Header = () => {
     dispatch(setToggleHamBurger());
   };
   const handleUser = () => {
-    // dispatch(setToggleSign());
-    setToggleUser(!toggleuser)
+    dispatch(setToggleUser());
   };
   return (
     <div
-      className={`mx-0 w-[100%] md:flex bg-gradient-to-b from-black  ${
+      className={`mx-0 w-[100%] md:flex bg-gradient-to-b from-black ${
         toggleHamBurger ? "bg-black" : "bg-transparent"
       } bg-opacity-70 md:bg-transparent ${
-        !user ? "inset-0" : "h-1/3"
+        !user ? "inset-0" : "h-auto"
       } fixed z-30 justify-between `}
     >
       <div className="flex justify-between">
@@ -181,7 +181,10 @@ const Header = () => {
             <div className="px-2 font-bold">
               <ul className="text-lg cursor-pointer">
                 <li className="py-1 hover:underline">Manage profiles</li>
-                <li className="py-1 hover:underline">Account</li>
+                <Link to={"/account/" + user?.uid}>
+                  {" "}
+                  <li className="py-1 hover:underline">Account</li>
+                </Link>
                 <li className="py-1 hover:underline">Help center</li>
                 <li className="py-1 flex justify-center border border- white">
                   <Link to="/">
@@ -210,7 +213,7 @@ const Header = () => {
               !toggleuser ? "block" : "hidden"
             }`}
           >
-            {"Hello 👋 " + displayName.split(" ")[0]}
+            {"Hello 👋 " + displayName}
           </div>
         )}
       </div>

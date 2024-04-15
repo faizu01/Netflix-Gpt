@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import Body from "./components/Body";
 import Header from "./components/Header";
+import Account from "./components/Account";
 import {
   Outlet,
   RouterProvider,
@@ -20,6 +21,9 @@ import { addUser, removeUser } from "./utils/userSlice";
 import MovieDetails from "./components/MovieDetail/MovieDetails";
 import GptSearch from "./components/GptSearch";
 import Footer from "./components/Footer";
+import UpdateAccount from "./components/UpdateAccount";
+import UpdateEmailOrPassword from "./components/UpdateEmailOrPassword";
+import UpdatePassword from "./components/UpdatePassword";
 const AppLayout = () => {
   return (
     <div>
@@ -37,7 +41,6 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Body />,
-        // element:<Login />
       },
       {
         path: "/login",
@@ -55,23 +58,26 @@ const appRouter = createBrowserRouter([
         path: "/gpt-search",
         element: <GptSearch />,
       },
+      {
+        path: "/account/:uid",
+        element: <Account />,
+      },
+      {
+        path: "/updateaccount/:where",
+        element: <UpdateAccount />,
+      },
+      {
+        path: "/update-email",
+        element: <UpdateEmailOrPassword title={"Email"} />,
+      },
+      {
+        path: "/update-password",
+        element: <UpdateEmailOrPassword title={"Password"} />,
+      },
     ],
   },
 ]);
 const App = () => {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       const { uid, email, displayName } = user;
-  //       dispatch(addUser({ uid, email, displayName }));
-  //     } else {
-  //       // User is signed out
-  //       // ...
-  //       dispatch(removeUser());
-  //     }
-  //   });
-  // }, []);
   return (
     <div>
       <RouterProvider router={appRouter} />

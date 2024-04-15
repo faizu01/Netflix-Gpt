@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTrailerVideo } from "../utils/moviesSlice";
 const useMainContainerVideo = (movieId) => {
   const maincontainerVideo=useSelector((store)=>store.movies.maincontainerVideo);
+
   const dispatch = useDispatch();
   useEffect(() => {
     !maincontainerVideo && fetchMainContainerVideo();
   }, []);
-
+  // console.log(maincontainerVideo);
   const fetchMainContainerVideo = async () => {
     const Data = await fetch(
       `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,

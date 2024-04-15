@@ -20,34 +20,19 @@ const GptSearchBar = () => {
     const json = await Data.json();
     return json.results;
   };
-
   const handleGptSearchClick = async () => {
-    //Now we want to make an API call to GPT APi to get search Details
-
     dispatch(setSearchQuery(searchPrompt.current.value));
 
     const query =
-      "Act as a Movie Reccommendation System and suggest 5 movies names for the query '" +
+      "Act as a Movie Reccommendation System and suggest 5 movies names for the query" +
       searchPrompt.current.value +
       "' comma's seperated as a string in a single line do not include any extra thing in your response just movie name";
-
-    // This part will not work until payment of open Ai
-    /* Expand me
 
     const chatCompletion = await openai.chat.completions.create({
       messages: [{ role: "user", content: query }],
       model: "gpt-3.5-turbo",
     });
-    const gptMovies = chatCompletion.choices; //assuming i have got the response as "Chashme Buddoor, Gol Maal, Khubsoorat, Baton Baton Mein, Naram Garam"
-    
-
-    */
-    //Hard coded for now
-    const gptMovies =
-      "Raat,Bhoot,1920,Pari,Ragini MMS,Stree,Tumbbad,Raaz,Ek Thi Daayan,1920: Evil Returns".split(
-        ","
-      );
-
+    const gptMovies = chatCompletion?.choices?.[0]?.message?.content.split(",");
     const promiseArray = gptMovies.map((movie) =>
       fetchRecommendedMovies(movie)
     );
@@ -61,12 +46,12 @@ const GptSearchBar = () => {
   };
   return (
     <div
-      className={`2xl:pt-[10%] md:pt-[20%] pt-[45%] md:flex md:justify-center ${
+      className={`2xl:pt-[10%] md:pt-[10%]  pt-[45%] md:flex md:justify-center ${
         searchQuery && "bg-gradient-to-t from-black"
       } relative z-10`}
     >
       <form
-        className="md:p-10 p-0 w-screen  xl:w-1/2 flex md:flex-row flex-col items-center xs:pt-[20%] "
+        className="md:p-10 p-0 w-screen xl:w-1/2 flex md:flex-row flex-col items-center xs:pt-[20%] "
         onSubmit={(e) => e.preventDefault()}
       >
         <input
