@@ -13,12 +13,16 @@ const useUpcomingPlayingMovies = () => {
   }, []);
 
   const fetchUpcomingPlayingMovies = async () => {
-    const Data = await fetch(
-      "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
-      MOVIE_OPTIONS
-    );
-    const json = await Data.json();
-    dispatch(addUpcomingPlayingMovies(json));
+    try {
+      const Data = await fetch(
+        "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+        MOVIE_OPTIONS
+      );
+      const json = await Data.json();
+      dispatch(addUpcomingPlayingMovies(json));
+    } catch (error) {
+      
+    }
   };
 };
 

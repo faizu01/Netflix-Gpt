@@ -9,17 +9,21 @@ const GptSearchBar = () => {
   const LangIdentifier = useSelector((store) => store.config.lang);
   const searchQuery = useSelector((store) => store.gpt.searchQuery);
   const searchPrompt = useRef(null);
+
   const fetchRecommendedMovies = async (movieName) => {
-    const correctMovieName = movieName.replace(" ", "%20");
-    const Data = await fetch(
-      "https://api.themoviedb.org/3/search/movie?query=" +
-        correctMovieName +
-        "&include_adult=false&language=en-US&page=1",
-      MOVIE_OPTIONS
-    );
-    const json = await Data.json();
-    return json.results;
+    try {
+      const correctMovieName = movieName.replace(" ", "%20");
+      const Data = await fetch(
+        "https://api.themoviedb.org/3/search/movie?query=" +
+          correctMovieName +
+          "&include_adult=false&language=en-US&page=1",
+        MOVIE_OPTIONS
+      );
+      const json = await Data.json();
+      return json.results;
+    } catch (error) {}
   };
+
   const handleGptSearchClick = async () => {
     dispatch(setSearchQuery(searchPrompt.current.value));
 

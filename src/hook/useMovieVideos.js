@@ -10,13 +10,17 @@ const useMovieVideos = ({ movieID }) => {
   },[movieID]);
 
   const fetchMovieVideos = async () => {
-    const Data = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieID}
-        /videos?language=en-US`,
-      MOVIE_OPTIONS
-    );
-    const json = await Data.json();
-    dispatch(addMovieVideos(json.results));
+   try {
+     const Data = await fetch(
+       `https://api.themoviedb.org/3/movie/${movieID}
+         /videos?language=en-US`,
+       MOVIE_OPTIONS
+     );
+     const json = await Data.json();
+     dispatch(addMovieVideos(json.results));
+   } catch (error) {
+    
+   }
   };
 };
 export default useMovieVideos;

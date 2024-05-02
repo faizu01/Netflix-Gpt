@@ -2,8 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import FAQ from "./FAQ"; //This is component
 import { Faq } from "../utils/constant"; //This is QustionAnswer
-import Body from "./Body";
-import Login from "./Login";
 import { useSelector } from "react-redux";
 const Footer = () => {
   const user = useSelector((store) => store.user);
@@ -14,7 +12,7 @@ const Footer = () => {
   };
 
   return (
-    <div className={`relative z-50 ${!toggleGptSearch && "bg-black"} text-white w-screen h- pt-[5%] px-[10%]`}>
+    <div className={`relative z-50 ${!toggleGptSearch && "bg-black"} text-white w-screen  pt-[5%] px-[10%]`}>
       {!user && (
         <>
           <h1 className="md:text-3xl font-bold text-xl pb-[2%]">
