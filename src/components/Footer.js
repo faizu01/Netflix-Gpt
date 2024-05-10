@@ -12,7 +12,11 @@ const Footer = () => {
   };
 
   return (
-    <div className={`relative z-50 ${!toggleGptSearch && "bg-black"} text-white w-screen  pt-[5%] px-[10%]`}>
+    <div
+      className={`relative z-50 ${
+        !toggleGptSearch && "bg-black"
+      } text-white w-screen  pt-[5%] px-[10%]`}
+    >
       {!user && (
         <>
           <h1 className="md:text-3xl font-bold text-xl pb-[2%]">

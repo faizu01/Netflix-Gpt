@@ -1,6 +1,4 @@
 import React from "react";
-import Login from "./Login";
-import validate from "../utils/validate";
 import { BACKGROUND_IMG } from "../utils/constant";
 import { Link } from "react-router-dom";
 const Body = () => {
